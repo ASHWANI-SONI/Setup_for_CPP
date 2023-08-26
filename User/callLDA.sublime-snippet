@@ -1,0 +1,32 @@
+<snippet>
+  <content><![CDATA[
+long long extendedgcd(long long a, long long b, long long& x, long long& y) {
+     if (a == 0 || b == 0) {
+          if (a == 0)y = 1;
+          else x = 1;
+          return max(a, b);
+     }
+     long long x1 = 0 , y1 = 0;
+     long long d = extendedgcd(b, a % b, x1, y1);
+     x = y1;
+     y = x1 - y1 * (a / b);
+     return d;
+}
+
+bool LDA(long long a, long long b, long long c, long long &x, long long &y) {
+     long long x0 = 0, y0 = 0;
+     long long g = extendedgcd(a, b, x0, y0);
+     if (c % g)
+          return false;
+     x = x0 * c / g;
+     y = y0 * c / g;
+     if (a < 0)x = -x;
+     if (b < 0)y = -y;
+     return true;
+}
+]]></content>
+  <tabTrigger>callLDA</tabTrigger>
+  <description></description>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <!-- <scope >source.python</scope > -->
+</snippet>

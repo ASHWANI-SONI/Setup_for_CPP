@@ -1,0 +1,51 @@
+<snippet>
+  <content><![CDATA[
+int total_sum[4 * N], pref_sum[4 * N], suff_sum[4 * N], max_sum[4 * N];
+int arr[N];
+
+vector<int> merge(vector<int> l, vector<int> r) {
+     vector<int> ans(4);
+     ans[0] += l[0];
+     ans[0] += r[0];
+     ans[1] = max(l[1], l[0] + r[1]);
+     ans[2] = max(r[2], r[0] + l[2]);
+     ans[3] = max(l[3], r[3]);
+     ans[3] = max(ans[3] , r[1] + l[2]);
+     return ans;
+}
+
+void build(int idx, int l, int r) {
+     if (l == r) {
+          total_sum[idx] = arr[l];
+          pref_sum[idx] = arr[l];
+          suff_sum[idx] = arr[l];
+          max_sum[idx] = arr[l];
+          return;
+     }
+     int mid = (l + r) / 2;
+     build(2 * idx + 1, l, mid);
+     build(2 * idx + 2, mid + 1, r);
+     auto it = merge({total_sum[2 * idx + 1], pref_sum[2 * idx + 1], suff_sum[2 * idx + 1], max_sum[2 * idx + 1]},
+     {total_sum[2 * idx + 2], pref_sum[2 * idx + 2], suff_sum[2 * idx + 2], max_sum[2 * idx + 2]});
+     total_sum[idx] += it[0];
+     pref_sum[idx] = it[1];
+     suff_sum[idx] = it[2];
+     max_sum[idx] = it[3];
+}
+
+vector<int> query(int idx, int l, int r, int lx, int rx) {
+     if (r < lx || rx < l)return {0, INT_MIN, INT_MIN, INT_MIN};
+     if (lx <= l && r <= rx) {
+          return {total_sum[idx], pref_sum[idx], suff_sum[idx], max_sum[idx]};
+     }
+     int mid = (l + r) / 2;
+     auto it = query(2 * idx + 1, l, mid, lx, rx);
+     auto at = query(2 * idx + 2, mid + 1, r, lx, rx);
+     return merge(it, at);
+}
+]]></content>
+  <tabTrigger>callrangeKadane</tabTrigger>
+  <description></description>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <!-- <scope >source.python</scope > -->
+</snippet>

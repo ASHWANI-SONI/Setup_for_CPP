@@ -1,0 +1,20 @@
+<snippet>
+  <content><![CDATA[
+int mexCal(vector<int>& a) {
+     sort(a.begin(), a.end());
+     int ans = 0;
+     for (auto &it : a) {
+          if (ans == it) {
+               ans++;
+          } else if (ans < it) {
+               return ans;
+          }
+     }
+     return ans;
+}
+]]></content>
+  <tabTrigger>callmexCal</tabTrigger>
+  <description></description>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <!-- <scope >source.python</scope > -->
+</snippet>

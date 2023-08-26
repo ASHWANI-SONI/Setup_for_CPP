@@ -1,0 +1,25 @@
+<snippet>
+  <content><![CDATA[
+vector<long long> fact(N, 1);
+vector<long long> inv(N, 1);
+void pre(int mmod) {
+     int f = 1;
+     int x = 1;
+     for (int i = 1; i < N; i++) {
+          fact[i] = mmul(i, fact[i - 1], mmod);
+          inv[i] = minv(fact[i], mmod);
+     }
+}
+
+int nCr(int n, int r, int xmod) {
+     int ans = mmul(fact[n], inv[r], xmod);
+     ans = mmul(ans, inv[n - r], xmod);
+     return ans;
+}
+
+]]></content>
+  <tabTrigger>callnCr</tabTrigger>
+  <description></description>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <!-- <scope >source.python</scope > -->
+</snippet>

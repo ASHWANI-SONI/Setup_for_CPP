@@ -1,0 +1,20 @@
+<snippet>
+  <content><![CDATA[
+int idx = 0;
+vector<int> lend(N), tour(N);
+void eulerTour(int node, int par = -1) {
+     lend[node] = idx;
+     for (auto &child : g[node]) {
+          if (par != child) {
+               eulerTour(child, node);
+          }
+     }
+     tour[idx] = node;
+     idx++;
+}
+]]></content>
+  <tabTrigger>etourtree</tabTrigger>
+  <description></description>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <!-- <scope >source.python</scope > -->
+</snippet>

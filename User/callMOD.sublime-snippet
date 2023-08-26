@@ -1,0 +1,42 @@
+<snippet>
+  <content><![CDATA[
+long long _pow(long long a, long long b, long long xmod) {
+     long long ans = 1;
+     for (long long i = 0; i < 63; ++i) {
+          if (((1ll << i)&b)) {
+               ans = (ans * a) % xmod;
+          }
+          a = (a * a) % xmod;
+     }
+     return ans;
+}
+
+
+long long mmul(long long a, long long b, long long xmod) {
+     a = a % xmod;
+     b = b % xmod;
+     return ((a * b) % xmod);
+}
+
+long long minv(long long a, long long xmod) {
+     return (_pow(a, xmod - 2, xmod));
+}
+
+long long madd(long long a, long long b, long long xmod) {
+     a %= xmod;
+     b %= xmod;
+     return ((a + b) % xmod);
+}
+
+long long msub(long long a, long long b, long long xmod) {
+     a %= xmod;
+     b %= xmod;
+     return ((a - b + xmod) % xmod);
+}
+
+]]></content>
+  <tabTrigger>callMOD</tabTrigger>
+  <description></description>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <!-- <scope >source.python</scope > -->
+</snippet>

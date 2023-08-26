@@ -1,0 +1,23 @@
+<snippet>
+  <content><![CDATA[
+class Compare {
+public:
+     bool operator()(pair<int, int> below, pair<int, int> above)
+     {
+          if (below.first > above.first) {
+               return true;
+          }
+          else if (below.first == above.first
+                    && below.second < above.second) {
+               return true;
+          }
+
+          return false;
+     }
+};
+]]></content>
+  <tabTrigger>callCompare</tabTrigger>
+  <description></description>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <!-- <scope >source.python</scope > -->
+</snippet>

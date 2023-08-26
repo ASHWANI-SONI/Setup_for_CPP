@@ -1,0 +1,23 @@
+<snippet>
+  <content><![CDATA[
+vector<long long> isprime(N, 1);
+vector<long long> primes;
+void seive() {
+     for (long long i = 2; i < N; ++i) {
+          if (isprime[i] == 1) {
+               isprime[i] = i;
+               for (long long j = i * i; j < N; j += i) {
+                    if (isprime[j] == 1) {
+                         isprime[j] = i;
+                    }
+               }
+               primes.push_back(i);
+          }
+     }
+}
+]]></content>
+  <tabTrigger>callseive</tabTrigger>
+  <description></description>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <!-- <scope >source.python</scope > -->
+</snippet>

@@ -1,0 +1,13 @@
+<snippet>
+  <content><![CDATA[
+long long gcd(long long a, long long b) {
+     if (a == 0 || b == 0)
+          return max(a, b);
+     return gcd(b, a % b);
+}
+]]></content>
+  <tabTrigger>callgcd</tabTrigger>
+  <description></description>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <!-- <scope >source.python</scope > -->
+</snippet>

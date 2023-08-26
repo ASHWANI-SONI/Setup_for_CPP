@@ -1,0 +1,24 @@
+<snippet>
+  <content><![CDATA[
+int bit[N];
+int sumFen(int k){
+     int ans = 0;
+     while(k){
+          ans += bit[k];
+          k-= (k&-k);
+     }
+     return k;
+}
+
+void updateFen(int k,int x){
+     while(k<=n){
+          bit[k] += x;
+          k += k&-k;
+     }
+}
+]]></content>
+  <tabTrigger>callfenwick</tabTrigger>
+  <description></description>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <!-- <scope >source.python</scope > -->
+</snippet>
